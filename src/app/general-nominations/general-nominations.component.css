@@ -1,0 +1,54 @@
+.leftline {
+    width: 3%;
+}
+
+.nomination-title {
+     width: 250px;
+     height: 35px; 
+     /* position: absolute; */
+            /* display: inline-block; */
+            /* left: 1%;
+            right: 1%;
+            top: 50%; */
+}
+
+.rightline {
+    width: 89%;
+}
+
+#container
+{
+    /* border: 1px solid; */
+    margin: auto;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 2px lightgrey;
+    width: 95%;
+  }
+
+#line
+{
+    border : 1px solid black;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+
+}
+.no-outline:focus {
+    outline: none;
+  }
+.nomination-input {
+    border : 1px solid black;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+}
+.form-control:focus {
+    box-shadow: none;
+  }
+
+table
+{
+  text-align: center; 
+}

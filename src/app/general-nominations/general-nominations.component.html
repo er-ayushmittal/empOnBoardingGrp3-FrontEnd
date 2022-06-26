@@ -1,0 +1,129 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<h1 align="center"> Nomination </h1>
+
+<div id="container">
+    <div class="d-flex">
+        <div class="leftline border-bottom border-primary px-3 py-1"></div>
+        <div class="nomination-title border-top border-start border-end 
+        border-primary px-3 text-center text-primary text-uppercase">
+        GENERAL-NOMINATIONS</div>
+        <div class="rightline border-bottom border-primary px-3 py-1"></div>
+    </div>
+    <br>
+<div>
+
+    <h5 style="background-color: lightgrey">GENERAL NOMINATIONS</h5>
+</div>
+
+<div>
+    <label> <input #checkbox1
+    id="checkbox1" 
+    type="checkbox" 
+    [checked]="checked1" 
+    (change)="oncheck1(checkbox1.checked)" />I hereby nominate the person(s) mentioned below who is/are member(s)/non-member(s) of my family to recieve the amount that may stand to my credit in the event of any unfortunate incident / in the event of my death as the amount has become payable or having become payable has not b  </label>
+</div>
+<br>
+<div style="overflow-x:auto;">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">S.NO.</th>
+            <th scope="col">FULL NAME OF THE NOMINEE</th>
+            <th scope="col">FULL ADDRESS OF THE NOMINEE</th>
+            <th scope="col">RELATIONSHIP WITH THE EMPLOYEE</th>
+            <th scope="col">AGE OF THE NOMINEE(S)</th>
+            <th scope="col">SHARE PAYABLE TO EACH NOMINEE (PERCENTAGE)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            <td scope="row"><input id="line" class="no-outline" type = "text" inputmode="numeric"></td>
+            <td scope="row"><input id="line" class="no-outline" type = "text"></td>
+            <td scope="row"><input id="line" class="no-outline" type = "text"></td>
+            <td scope="row"><input id="line" class="no-outline" type = "text"></td>
+            <td scope="row"><input id="line" class="no-outline" type = "text"></td>
+            <td scope="row"><input id="line" class="no-outline" type = "text"></td>
+            
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+        <form [formGroup]="nomineeForm" novalidate class="form-group pb-3" action="">
+            <div class="row">
+                <div class="col-4 form-floating mb-3 mt-3 ">
+                    <input placeholder = "Date" class = "textbox-n nomination-input form-control" type = "text" onfocus = "(this.type = 'date')"  id = "date" name="date" formControlName="date">
+                    <!-- <input type="date" class="reference-input form-control" id="date"
+                        placeholder="date" name="date"> -->
+                        <div style="color: red;"class="div1" *ngIf="!witness1?.valid && (witness1?.dirty ||witness1?.touched)">
+                           Date is required
+                          </div>
+                    <label for="date" class="text-secondary">Date <span class="text-danger">*</span></label>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text" class="nomination-input form-control" id="witness1"
+                        placeholder="Name of Wittness 1" name="witness1" formControlName="witness1">
+                        <div style="color: red;"class="div1" *ngIf="!witness1?.valid && (witness1?.dirty ||witness1?.touched)">
+                            Witness 1 is Required
+                          </div>
+                    <label for="witness1" class="text-secondary">Name of Wittness 1 <span class="text-danger">*</span></label>
+                </div>
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text"
+                        class="nomination-input form-control"
+                        id="witness2" placeholder="Name of Wittness 2 " name="witness2" formControlName="witness2" >
+                        <div style="color: red;"class="div1" *ngIf="!witness2?.valid && (witness2?.dirty ||witness2?.touched)">
+                            Witness 2 is Required
+                          </div>
+                    <label for="witness2" class="text-secondary">Name of Wittness 2 <span class="text-danger">*</span></label>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label> <input #checkbox2
+                id="checkbox2" 
+                type="checkbox" 
+                [checked]="checked2" 
+                (change)="oncheck2(checkbox2.checked)" formControlName="checkbox2" />I hereby declare that the above mentioned nominees can recieve the amount that may stand to my credit in the event of any unfortunate incident/in the event of my death 
+                </label>
+            </div>
+            <br>
+            <div class="row ">
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text" class="nomination-input form-control" id="employeename"
+                        placeholder="Employee Name" name="employeename" formControlName="employeename">
+                        <div style="color: red;"class="div1" *ngIf="!employeename?.valid && (employeename?.dirty ||employeename?.touched)">
+                            Employee Name is required
+                          </div>
+                        <label for="employeename" class="text-secondary">Employee Name<span class="text-danger">*</span></label>
+                </div>
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text"
+                        class="nomination-input form-control"
+                        id="employeeid" placeholder="Employee ID " name="employeeid" formControlName="employeeid">
+                        <div style="color: red;"class="div1" *ngIf="!employeeid?.valid && (employeeid?.dirty ||employeeid?.touched)">
+                            Employee ID is required
+                          </div>
+                    <label for="employeeid" class="text-secondary">Employee ID <span class="text-danger">*</span></label>
+                </div>
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text"
+                        class="nomination-input form-control"
+                        id="designation" placeholder="Designation" name="designation" formControlName="designation">
+                        <div style="color: red;"class="div1" *ngIf="!designation?.valid && (designation?.dirty ||designation?.touched)">
+                            Designation is required
+                          </div>
+                    <label for="designation" class="text-secondary">Designation <span class="text-danger">*</span></label>
+                </div>
+            </div>
+        </form>
+          
+    </div>
+</div>
+
+
