@@ -15,7 +15,21 @@
 .rightline {
     width: 89%;
 }
-
+* {
+  font-size: 14px;
+}
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: #b8b7b7;
+  line-height: 2em;
+  padding: 0px;
+  
+}
+input::placeholder{
+  color: #a9a7a7;
+  font-size: 12px;
+}
 #container
 {
     /* border: 1px solid; */
@@ -52,4 +66,18 @@
 table
 {
   text-align: center; 
+}
+.btncontrol {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-primary {
+  background-color: #44a3df;
+}
+
+.btn-outline-primary {
+  color: #44a3df;
+  border-color: #44a3df;
 }
