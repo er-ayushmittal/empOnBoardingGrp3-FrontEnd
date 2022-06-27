@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-general-nominations',
@@ -8,8 +9,76 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class GeneralNominationsComponent implements OnInit {
 
-  constructor() { }
+  // form: FormGroup;
+  // headers: any;
+  // res: any;
+  // entries: any;
+  // constructor(public fb: FormBuilder, private http: HttpClient) { 
+  //   this.form = this.fb.group({
+  //     sno:[''],
+  //     nomineename:[''],
+  //     nomineeaddress:[''],
+  //     nomineerelationship:[''],
+  //     nomineeage:[''],
+  //     nomineeper:[''],
+  //     date:[''],
+  //     witness1:[''],
+  //     witness2:[''],
+  //     employeename:[''],
+  //     employeeid:[''],
+  //     designation:['']
+  //   });
+  // }
 
+  public validationMessages = {
+    'nomineeaddress': [
+      { type: 'required', message: 'Address is required' }
+    ],
+    'nomineerelationship': [
+      { type: 'required', message: 'Relationship with nominee is required' },
+      { type: 'pattern', message: 'Enter valid input' }
+    ],
+    'nomineeage': [
+      { type: 'required', message: 'Age is required' },
+      { type: 'pattern', message: 'Enter valid age' },
+      { type: 'maxlength', message: 'Invalid age' }
+    ],
+    'nomineeper': [
+      { type: 'required', message: 'Share percentage is required' },
+      { type: 'pattern', message: 'Enter valid number' },
+      { type: 'maxlength', message: 'Invalid share' }
+    ],
+    'nomineename': [
+      { type: 'required', message: 'Nominee name is required' },
+      { type: 'pattern', message: 'Enter a valid name' },
+      { type: 'maxlength', message: 'Name is too long' }
+    ],
+    'sno': [
+      { type: 'required', message: 'Sr no is required' },
+      { type: 'pattern', message: 'Enter a valid no' }
+    ],
+    'witness1': [
+      { type: 'required', message: 'Witness 1 is required' },
+      { type: 'pattern', message: 'Enter valid Witness Name' }
+    ],
+    'witness2': [
+      { type: 'required', message: 'Wittness 2 is required' },
+      { type: 'pattern', message: 'Enter Valid Witness Name' }
+    ],
+    'designation': [
+      { type: 'required', message: 'Designation is required' },
+      { type: 'pattern', message: 'Enter Valid Designation' }
+    ],
+    'employeeid': [
+      { type: 'required', message: 'Employee Id is required' },
+      { type: 'pattern', message: 'Enter a valid Employee Id' },
+      { type: 'maxlength', message: 'Employee ID should be less than 5 digits' }
+    ],
+    'employeename': [
+      { type: 'required', message: 'Employee Name is required' },
+      { type: 'pattern', message: 'Enter a valid Name' }
+    ]
+  }
   ngOnInit(): void {
   }
   public checked1:boolean;
@@ -31,15 +100,38 @@ export class GeneralNominationsComponent implements OnInit {
       Validators.maxLength(50),
       Validators.pattern('^[a-zA-Z ]*$')
     ]),
+    sno:new FormControl('',[Validators.pattern('0*[1-9][0-9]*'),Validators.required]),
+    nomineename:new FormControl('',[Validators.pattern('^[a-zA-Z ]*$'),Validators.required]),
+    nomineeaddress:new FormControl('',[Validators.required]),
+    nomineerelationship:new FormControl('',[Validators.pattern('^[a-zA-Z ]*$'),Validators.required]),
+    nomineeage:new FormControl('',[Validators.pattern('[1-9]|[1-9][0-9]'),Validators.required]),
+    nomineeper:new FormControl('',[Validators.required]),
     date:new FormControl('',[Validators.required]),
-    witness1:new FormControl('', [Validators.required]),
-    witness2:new FormControl('',[Validators.required]),
-    employeename:new FormControl('',[Validators.required]),
-    employeeid:new FormControl('',[Validators.required]),
-    designation:new FormControl('',[Validators.required]),
+    witness1:new FormControl('', [Validators.pattern('^[A-Za-z]+$'),Validators.required]),
+    witness2:new FormControl('',[Validators.pattern('^[A-Za-z]+$'),Validators.required]),
+    employeename:new FormControl('',[Validators.pattern('^[A-Za-z]+$'),Validators.required]),
+    employeeid:new FormControl('',[Validators.maxLength(5),Validators.required]),
+    designation:new FormControl('',[Validators.pattern('^[a-zA-Z ]*$'),Validators.required]),
 
   })
-
+  get sno() {
+    return this.nomineeForm.get('sno');
+  }
+  get nomineename() {
+    return this.nomineeForm.get('nomineename');
+  }
+  get nomineeaddress() {
+    return this.nomineeForm.get('nomineeaddress');
+  }
+  get nomineerelationship() {
+    return this.nomineeForm.get('nomineerelationship');
+  }
+  get nomineeage() {
+    return this.nomineeForm.get('nomineeage');
+  }
+  get nomineeper() {
+    return this.nomineeForm.get('nomineeper');
+  }
   get date(){
     return this.nomineeForm.get('date');
     }
@@ -57,5 +149,10 @@ export class GeneralNominationsComponent implements OnInit {
   }
   get designation() {
     return this.nomineeForm.get('designation');
+  }
+  
+  submitForm(){
+    console.log("hurray!");
+    console.log(this.nomineeForm.get('nomineename'));
   }
 }

@@ -25,7 +25,7 @@
     width: 95%;
   }
 
-#line
+#sno,#nomineename,#nomineerelationship,#nomineeaddress,#nomineeage,#nomineeper
 {
     border : 1px solid black;
     border-top-style: hidden;
@@ -38,11 +38,12 @@
     outline: none;
   }
 .nomination-input {
-    border : 1px solid black;
-    border-top-style: hidden;
+    border : none;
+    border-radius:0px !important;
+    /* border-top-style: hidden;
     border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-style: groove;
+    border-left-style: hidden; */
+    border-bottom: 1px solid black;
 }
 .form-control:focus {
     box-shadow: none;
