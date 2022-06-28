@@ -107,11 +107,12 @@ export class GeneralNominationsComponent implements OnInit {
     nomineeage:new FormControl('',[Validators.pattern('[1-9]|[1-9][0-9]'),Validators.required]),
     nomineeper:new FormControl('',[Validators.required]),
     date:new FormControl('',[Validators.required]),
-    witness1:new FormControl('', [Validators.pattern('^[A-Za-z]+$'),Validators.required]),
-    witness2:new FormControl('',[Validators.pattern('^[A-Za-z]+$'),Validators.required]),
-    employeename:new FormControl('',[Validators.pattern('^[A-Za-z]+$'),Validators.required]),
+    witness1:new FormControl('', [Validators.pattern('^[a-zA-Z ]*$'),Validators.required]),
+    witness2:new FormControl('',[Validators.pattern('^[a-zA-Z ]*$'),Validators.required]),
+    employeename:new FormControl('',[Validators.pattern('^[a-zA-Z ]*$'),Validators.required]),
     employeeid:new FormControl('',[Validators.maxLength(5),Validators.required]),
     designation:new FormControl('',[Validators.pattern('^[a-zA-Z ]*$'),Validators.required]),
+    
 
   })
   get sno() {
@@ -153,6 +154,30 @@ export class GeneralNominationsComponent implements OnInit {
   
   submitForm(){
     console.log("hurray!");
-    console.log(this.nomineeForm.get('nomineename'));
+    // console.log(this.nomineeForm.get('nomineename'));
+
+    var formData: any = new FormData();
+    formData.append('sno', this.sno.value);
+    formData.append('nomineename', this.nomineename.value);
+    formData.append('nomineeaddress', this.nomineeaddress.value);
+    formData.append('nomineerelationship', this.nomineerelationship.value);
+    formData.append('nomineeage', this.nomineeage.value);
+    formData.append('nomineeper', this.nomineeper.value);
+    formData.append('date', this.date.value);
+    formData.append('witness1', this.witness1.value);
+    formData.append('witness2', this.witness2.value);
+    formData.append('employeename', this.employeename.value);
+    formData.append('employeeid', this.employeeid.value);
+    formData.append('designation', this.designation.value);
+   
+    
+    
+    var object = {};
+    formData.forEach(function(value: String, key: string){
+    object[key] = value;
+});
+    var json = JSON.stringify(object);
+    console.log(json);
   }
+  
 }
