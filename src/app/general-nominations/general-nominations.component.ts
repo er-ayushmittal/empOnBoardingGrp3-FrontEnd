@@ -35,17 +35,17 @@ export class GeneralNominationsComponent implements OnInit {
       { type: 'required', message: 'Address is required' }
     ],
     'nomineerelationship': [
-      { type: 'required', message: 'Relationship with nominee is required' },
-      { type: 'pattern', message: 'Enter valid input' }
+      { type: 'required', message: 'Relationship with employee is required' },
+      { type: 'pattern', message: 'Enter a valid input' }
     ],
     'nomineeage': [
       { type: 'required', message: 'Age is required' },
-      { type: 'pattern', message: 'Enter valid age' },
+      { type: 'pattern', message: 'Enter a valid age' },
       { type: 'maxlength', message: 'Invalid age' }
     ],
     'nomineeper': [
       { type: 'required', message: 'Share percentage is required' },
-      { type: 'pattern', message: 'Enter valid number' },
+      { type: 'pattern', message: 'Enter a valid number' },
       { type: 'maxlength', message: 'Invalid share' }
     ],
     'nomineename': [
@@ -59,24 +59,24 @@ export class GeneralNominationsComponent implements OnInit {
     ],
     'witness1': [
       { type: 'required', message: 'Witness 1 is required' },
-      { type: 'pattern', message: 'Enter valid Witness Name' }
+      { type: 'pattern', message: 'Enter a valid witness name' }
     ],
     'witness2': [
-      { type: 'required', message: 'Wittness 2 is required' },
-      { type: 'pattern', message: 'Enter Valid Witness Name' }
+      { type: 'required', message: 'Witness 2 is required' },
+      { type: 'pattern', message: 'Enter a valid witness name' }
     ],
     'designation': [
       { type: 'required', message: 'Designation is required' },
-      { type: 'pattern', message: 'Enter Valid Designation' }
+      { type: 'pattern', message: 'Enter a valid designation' }
     ],
     'employeeid': [
-      { type: 'required', message: 'Employee Id is required' },
-      { type: 'pattern', message: 'Enter a valid Employee Id' },
+      { type: 'required', message: 'Employee ID is required' },
+      { type: 'pattern', message: 'Enter a valid Employee ID' },
       { type: 'maxlength', message: 'Employee ID should be less than 5 digits' }
     ],
     'employeename': [
-      { type: 'required', message: 'Employee Name is required' },
-      { type: 'pattern', message: 'Enter a valid Name' }
+      { type: 'required', message: 'Employee name is required' },
+      { type: 'pattern', message: 'Enter a valid name' }
     ]
   }
   ngOnInit(): void {
