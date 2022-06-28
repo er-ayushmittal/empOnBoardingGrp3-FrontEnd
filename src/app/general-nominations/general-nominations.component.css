@@ -63,7 +63,7 @@ input::placeholder{
     box-shadow: none;
   }
 
-table
+table th
 {
   text-align: center;
   border: 1px solid #ccc;
@@ -74,6 +74,10 @@ table
   text-transform: uppercase;
   box-sizing: border-box;
   line-height: 17px; 
+}
+table
+{
+  text-align: center;
 }
 .btncontrol {
   display: flex;
