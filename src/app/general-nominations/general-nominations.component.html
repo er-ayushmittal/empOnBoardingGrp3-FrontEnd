@@ -1,7 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <h1 align="center"> Nomination </h1>
-
+<form [formGroup]="nomineeForm" novalidate class="form-group pb-3" (ngSubmit)="submitForm()">
 <div id="container">
     <div class="d-flex">
         <div class="leftline border-bottom border-primary px-3 py-1"></div>
@@ -15,14 +15,17 @@
 
     <h5 style="background-color: lightgrey">GENERAL NOMINATIONS</h5>
 </div>
+
 <div>
-<form [formGroup]="nomineeForm" novalidate class="form-group pb-3" (ngSubmit)="submitForm()">
+
 <div>
     <label> <input #checkbox1
     id="checkbox1" 
     type="checkbox" 
     [checked]="checked1" 
-    (change)="oncheck1(checkbox1.checked)" required /> I hereby nominate the person(s) mentioned below who is/are member(s)/non-member(s) of my family to recieve the amount that may stand to my credit in the event of any unfortunate incident / in the event of my death as the amount has become payable or having become payable has not been paid  </label>
+    (change)="oncheck1(checkbox1.checked)" formControlName="box" required /> I hereby nominate the person(s) mentioned below who is/are member(s)/non-member(s) of my family to recieve the amount that may stand to my credit in the event of any unfortunate incident / in the event of my death as the amount has become payable or having become payable has not been paid <div style="color: red;"class="div1" *ngIf="!box?.valid && (box?.dirty ||box?.touched)">
+        Required Field
+       </div> </label>
 </div>
 <br>
 <div style="overflow-x:auto;">
@@ -35,6 +38,7 @@
             <th scope="col">RELATIONSHIP WITH THE EMPLOYEE</th>
             <th scope="col">AGE OF THE NOMINEE(S)</th>
             <th scope="col">SHARE PAYABLE TO EACH NOMINEE (PERCENTAGE)</th>
+            <th scope="col">OCCUPATION</th>
           </tr>
         </thead>
         <tbody>
@@ -76,7 +80,21 @@
                     <small style="color:red;">{{validation.message}}</small>
                 </div>
             </div></td>
-            
+            <td scope="row"><input id="nomineeoccupation" class="no-outline" type = "text" name="nomineeoccupation" formControlName="nomineeoccupation" required> <div *ngFor="let validation of validationMessages.nomineeoccupation">
+
+                <div
+
+                    *ngIf="nomineeForm.get('nomineeoccupation').hasError(validation.type) && (nomineeForm.get('nomineeoccupation').dirty || nomineeForm.get('nomineeoccupation').touched)">
+
+                    <small style="color:red;">{{validation.message}}</small>
+
+                </div>
+
+               
+
+
+
+            </div></td>
             
           </tr>
         </tbody>
@@ -126,17 +144,19 @@
                 id="checkbox2" 
                 type="checkbox" 
                 [checked]="checked2" 
-                (change)="oncheck2(checkbox2.checked)" required/> I hereby declare that the above mentioned nominees can receive the amount that may stand to my credit in the event of any unfortunate incident/in the event of my death 
-                </label>
+                (change)="oncheck2(checkbox2.checked)" formControlName="box1" required/> I hereby declare that the above mentioned nominees can receive the amount that may stand to my credit in the event of any unfortunate incident/in the event of my death 
+                <div style="color: red;"class="div1" *ngIf="!box1?.valid && (box1?.dirty ||box1?.touched)">
+                    Required Field
+                   </div></label>
             </div>
             <br>
-            <div class="row ">
+            <!-- <div class="row ">
                 <div class="col-4 form-floating mb-3 mt-3">
                     <input type="text" class="nomination-input form-control" id="employeename"
                         placeholder="Employee Name" name="employeename" formControlName="employeename" required>
-                        <!-- <div style="color: red;"class="div1" *ngIf="!employeename?.valid && (employeename?.dirty ||employeename?.touched)">
+                        <div style="color: red;"class="div1" *ngIf="!employeename?.valid && (employeename?.dirty ||employeename?.touched)">
                             Employee Name is required
-                          </div> -->
+                          </div>
                         <label for="employeename" class="text-secondary">Employee Name<span class="text-danger">*</span></label>
                 </div>
                 <div class="col-4 form-floating mb-3 mt-3">
@@ -163,14 +183,13 @@
                         </div>
                     <label for="designation" class="text-secondary">Designation <span class="text-danger">*</span></label>
                 </div>
-            </div>
-            </div>
-            <!-- <div class="form-group">
-                <button class="btn btn-danger btn-block btn-lg">Create</button>
             </div> -->
-        </form>
+            </div>
+            
+        </div>
+    
     </div>
-    </div>
+
     <div class="m-3 btncontrol">
         <div>
           <button type="button" class="btn btn-outline-primary rounded-0 m-1">
@@ -178,12 +197,14 @@
           </button>
         </div>
         <div>
-          <button type="submit" class="btn btn-primary rounded-0 m-1">SAVE</button>
-          <button type="button" class="btn btn-primary rounded-0 m-1">
+          <button type="submit" class="btn btn-primary rounded-0 m-1" [disabled]="!nomineeForm.valid" >SAVE</button>
+          <button type="button" class="btn btn-primary rounded-0 m-1" [disabled]="!nomineeForm.valid" (click)="onNext()">
             SAVE & CONTINUE
           </button>
         </div>
-      </div>
+        </div>
+        </form>
+      
 
 
 
